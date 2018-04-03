@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ser210.quinnipiac.edu.triviaapinavdrawer.TriviaActivity">
+
+
+    <fragment
+        class="ser210.quinnipiac.edu.triviaapinavdrawer.TriviaFragment"
+        android:id="@+id/image_frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="1"
+        android:layout_marginLeft="0dp"
+        android:textSize="30dp"
+        android:textColor="#000"
+        android:text="This Will Be Your Question Press Start to Begin" />
+
+    <Button
+        android:id="@+id/answer_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="470dp"
+        android:text="Answer!"
+        />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="470dp"
+        android:text="Next!"
+        />
+
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="470dp"
+        android:text="START"
+        />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup">
+
+    <RadioButton
+        android:id="@+id/option1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/answer_button"
+        android:layout_alignRight="@+id/answer_button"
+        android:layout_below="@+id/question"
+        android:layout_marginTop="160dp"
+        android:textColor="#000"
+        android:checked="false"
+        android:text="Option 1" />
+
+    <RadioButton
+        android:id="@+id/option2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/option1"
+        android:layout_alignStart="@+id/option1"
+        android:layout_below="@+id/option1"
+        android:layout_marginTop="50dp"
+        android:textColor="#000"
+        android:checked="false"
+        android:text="Option 2" />
+
+    <RadioButton
+        android:id="@+id/option3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/option2"
+        android:layout_alignStart="@+id/option2"
+        android:layout_below="@+id/option2"
+        android:textColor="#000"
+        android:checked="false"
+        android:layout_marginTop="52dp"
+        android:text="Option 3" />
+
+
+        <RadioButton
+            android:id="@+id/option4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/option2"
+            android:layout_alignStart="@+id/option2"
+            android:layout_below="@+id/option3"
+            android:textColor="#000"
+            android:checked="false"
+            android:layout_marginTop="52dp"
+            android:text="Option 4" />
+
+    </RadioGroup>
+</RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>
