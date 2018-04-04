@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ public class ThemeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final Toolbar myToolbar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theme);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -24,9 +26,14 @@ public class ThemeActivity extends AppCompatActivity {
         Button btn2 = (Button) findViewById(R.id.button2);
         Button btn3 = (Button) findViewById(R.id.button3);
 
+        myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar); //Setting the Toolbar
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myToolbar.setBackgroundColor(Color.YELLOW);
+               // myToolbar.getResources().getColor(R.color.colorBlack);
 
             }
         });
@@ -34,6 +41,7 @@ public class ThemeActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myToolbar.setBackgroundColor(Color.BLACK);
 
             }
         });
@@ -41,6 +49,7 @@ public class ThemeActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myToolbar.setBackgroundColor(Color.RED);
 
             }
         });

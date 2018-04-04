@@ -110,12 +110,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_share:
                 setIntent(" ");
                 return true;
-            case R.id.action_add_fav:
+            case R.id.action_display_fav:
                Intent intent2 = new Intent(this, FaavoritesActivity.class );
                startActivity(intent2);
-                return true;
-            case R.id.action_settings:
-                setSettings(" ");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

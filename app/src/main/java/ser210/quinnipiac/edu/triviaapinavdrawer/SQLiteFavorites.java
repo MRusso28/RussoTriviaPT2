@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.w3c.dom.Comment;
+
 /**
  * Created by markrusso on 4/2/18.
  * Assignment 3 Part 2
@@ -18,6 +20,7 @@ public class SQLiteFavorites extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "people_table";
     private static final String COL1 = "ID";
     private static final String COL2 = "name";
+    private SQLiteDatabase database;
 
 
     //constructed *required

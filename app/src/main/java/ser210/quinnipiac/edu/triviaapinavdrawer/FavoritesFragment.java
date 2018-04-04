@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +14,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
-
-import ser210.quinnipiac.edu.triviaapinavdrawer.dummy.DummyContent;
-import ser210.quinnipiac.edu.triviaapinavdrawer.dummy.DummyContent.DummyItem;
-
 import java.util.ArrayList;
 import java.util.List;
 

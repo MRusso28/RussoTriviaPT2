@@ -4,17 +4,10 @@
     tools:context=".MainActivity">
 
     <item android:id="@+id/action_create_order"
-        android:title="@string/Background"
+        android:title="Settings"
         android:icon="@drawable/ic_menu_camera"
         android:orderInCategory="1"
         android:showAsAction="ifRoom" />
-
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:actionProviderClass="android.app.MediaRouteActionProvider"/>
-
 
     <item android:id="@+id/action_share"
         android:title="@string/action_share"

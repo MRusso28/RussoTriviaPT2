@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="ser210.quinnipiac.edu.triviaapinavdrawer.OptionsFragment">
 
     <ImageView
@@ -9,6 +10,7 @@
         android:layout_width="400dp"
         android:layout_height="120dp"
         android:background="#ffe947"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="55dp"
         android:src="@drawable/title" />
 

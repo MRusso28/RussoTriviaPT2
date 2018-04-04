@@ -164,7 +164,7 @@ public class TriviaActivity extends AppCompatActivity {
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        //tool bar settings implemented * note different than home screen
+
         switch (item.getItemId()) {
             case R.id.action_create_order:
                 Intent intent = new Intent(this, ThemeActivity.class);
@@ -174,7 +174,6 @@ public class TriviaActivity extends AppCompatActivity {
                 setIntent(" ");
                 return true;
             case R.id.action_display_fav:
-
                 Intent intent2 = new Intent(this, FaavoritesActivity.class );
                 startActivity(intent2);
                 return true;
@@ -183,7 +182,7 @@ public class TriviaActivity extends AppCompatActivity {
                 return true;
             case R.id.action_changeQ:
                 urlInUse = urlRand;
-                Toast.makeText(TriviaActivity.this, "Random Trivia!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(TriviaActivity.this, "Random Trivia Press Next For A andom Q!!", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_add_fav:
                     String newEntry = question.getText().toString();

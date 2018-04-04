@@ -1,58 +1,42 @@
 package ser210.quinnipiac.edu.triviaapinavdrawer;
 
-import android.app.FragmentManager;
-import android.content.Intent;
+/**
+ * Created by markrusso on 4/3/18.
+ */
+
+
+import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SimpleAdapter;
 
-import java.sql.SQLClientInfoException;
 import java.util.ArrayList;
 
-/**
- * Created by markrusso on 3/5/18.
- * Assignment 3 Part 2
- * SER210
- * this class displays a listview of favorites
- *
- */
-
-public class FaavoritesActivity extends AppCompatActivity {
+public class FavsListFragment extends ListFragment {
     private static final String TAG = "ListDataActivity";
     SQLiteFavorites mDatabaseHelper;
     private ListView mListView;
+    FaavoritesActivity myActivity;
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faavorites);
-        mListView = (ListView) findViewById(R.id.listView);
-        mDatabaseHelper = new SQLiteFavorites(this);
-
-//        View fragmentContainer = findViewById(R.id.listView);
-//        if (fragmentContainer != null) {
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            FavsListFragment countryDetail = new FavsListFragment();
-//            ft.addToBackStack(null);
-//            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//            ft.commit();
-//        }
-
-        populateListView();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.listview_layout, container, false);
+      //  ListView listView = (ListView) view.findViewById(R.id.listView);
+        //populateListView();
+        return view;
     }
+
 
     //populates the list view
     private void populateListView() {
@@ -68,7 +52,7 @@ public class FaavoritesActivity extends AppCompatActivity {
         }
 
         //creates list adapter and set the adapter
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , listData);
         mListView.setAdapter(adapter);
 
         //set an onItemClickListener to the ListView
@@ -88,10 +72,4 @@ public class FaavoritesActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * customizable TOAST!
-     */
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
-    }
 }

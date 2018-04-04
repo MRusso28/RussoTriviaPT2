@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_theme"
     tools:context="ser210.quinnipiac.edu.triviaapinavdrawer.ThemeActivity">
 
 
@@ -27,15 +28,38 @@
 
     <include layout="@layout/content_theme" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SETTINGS"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="85dp"
+            android:layout_alignParentTop="true"
+            android:textSize="48dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/choose_text"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:layout_marginStart="0dp"
+            android:layout_alignParentTop="true"
+            android:text="PLEASE CHOOSE YOUR BACKGROUND COLOR"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BLUE"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="100dp"
+            android:text="WHITE"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="200dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="133dp" />
 
@@ -43,8 +67,8 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="140dp"
             android:text="BLACK"
             tools:layout_editor_absoluteX="130dp"
             tools:layout_editor_absoluteY="126dp" />
@@ -53,24 +77,55 @@
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="200dp"
-            android:text="WHITE"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="240dp"
+            android:text="RED"
             tools:layout_editor_absoluteX="265dp"
             tools:layout_editor_absoluteY="133dp" />
 
+
         <TextView
-            android:id="@+id/choose_text"
+            android:id="@+id/choose_font"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button3"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="100dp"
-            android:layout_alignLeft="@id/button"
-            android:layout_toEndOf="@+id/button3"
-            android:text="PLEASE CHOOSE YOUR BACKGROUND COLOR" />
+            android:layout_marginTop="260dp"
+            android:layout_marginStart="40dp"
+            android:layout_alignParentTop="true"
+            android:text="PLEASE CHOOSE YOUR FONT STYLE"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BOLD"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="300dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="133dp" />
+
+        <Button
+            android:id="@+id/button2Font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="140dp"
+            android:text="ITALIC"
+            tools:layout_editor_absoluteX="130dp"
+            tools:layout_editor_absoluteY="126dp" />
+
+        <Button
+            android:id="@+id/button3Font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="240dp"
+            android:text="CURSIVE"
+            tools:layout_editor_absoluteX="265dp"
+            tools:layout_editor_absoluteY="133dp" />
 
     </RelativeLayout>
 
