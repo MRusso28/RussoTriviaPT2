@@ -7,11 +7,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="#ffe947"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="55dp"
         android:src="@drawable/title" />
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -55,21 +56,39 @@ public class TriviaActivity extends AppCompatActivity {
     private int trivAnswer;
     JSONObject jsonObj;
     SQLiteFavorites myDB;
-    TextView question;
+    private TextView question;
     private ShareActionProvider shareActionProvider;
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle drawerToggle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeActivity.theme_color);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
         question = (TextView) findViewById(R.id.question);
+        TextView opt1 = (TextView) findViewById(R.id.option1);
+        TextView opt2 = (TextView) findViewById(R.id.option2);
+        TextView opt3 = (TextView) findViewById(R.id.option3);
+        TextView opt4 = (TextView) findViewById(R.id.option4);
         Button nxt = (Button) findViewById(R.id.next_button);
         Button START = (Button) findViewById(R.id.start_button);
         myDB = new SQLiteFavorites(this);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //change the fonts if changed in settings else use default font
+        if(ThemeActivity.font_type != null){
+            question.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
+            opt1.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
+            opt2.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
+            opt3.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
+            opt4.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
+        }else{
+            question.setTypeface(Typeface.createFromAsset(getAssets(), "default.ttf"));
+            opt1.setTypeface(Typeface.createFromAsset(getAssets(), "default.ttf"));
+            opt2.setTypeface(Typeface.createFromAsset(getAssets(), "default.ttf"));
+            opt3.setTypeface(Typeface.createFromAsset(getAssets(), "default.ttf"));
+            opt4.setTypeface(Typeface.createFromAsset(getAssets(), "default.ttf"));
+        }
+
 
 
         TriviaFragment frag = (TriviaFragment) getFragmentManager().findFragmentById(R.id.image_frag);
@@ -114,24 +133,24 @@ public class TriviaActivity extends AppCompatActivity {
             }
         });
 
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer) {
-
-            @Override
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                invalidateOptionsMenu();
-            }
-
-            //Called when a drawer has settled in a completely open state.
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                invalidateOptionsMenu();
-                drawer.bringToFront();
-                drawerLayout.requestLayout();
-            }
-        };
+//        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer) {
+//
+//            @Override
+//            public void onDrawerClosed(View view) {
+//                super.onDrawerClosed(view);
+//                invalidateOptionsMenu();
+//            }
+//
+//            //Called when a drawer has settled in a completely open state.
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                super.onDrawerOpened(drawerView);
+//                invalidateOptionsMenu();
+//                drawer.bringToFront();
+//                drawerLayout.requestLayout();
+//            }
+//        };
     }
 
     //add data to the SQLFavs
@@ -161,12 +180,13 @@ public class TriviaActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
+//        if (drawerToggle.onOptionsItemSelected(item)) {
+//            return true;
+//        }
 
         switch (item.getItemId()) {
             case R.id.action_create_order:
+                finish();
                 Intent intent = new Intent(this, ThemeActivity.class);
                 startActivity(intent);
                 return true;
@@ -178,7 +198,7 @@ public class TriviaActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
             case R.id.action_settings:
-                setSettings(" ");
+                finish();
                 return true;
             case R.id.action_changeQ:
                 urlInUse = urlRand;

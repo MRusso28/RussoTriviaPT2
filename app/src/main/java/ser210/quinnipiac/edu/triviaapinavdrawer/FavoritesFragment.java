@@ -28,7 +28,6 @@ public class FavoritesFragment extends ListFragment {
         super.onAttach(activity);
         myActivity = (FavsListListener) activity;
 
-
     }
 
     static interface FavsListListener{

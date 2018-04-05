@@ -9,6 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+
+/**
+ * The is a fragment used by the main activity of Russos Trivia
+ * Updated April 6, 2018
+ * @author markrusso
+ * SER210
+ */
+
 public class OptionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

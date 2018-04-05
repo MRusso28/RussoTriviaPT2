@@ -2,8 +2,10 @@ package ser210.quinnipiac.edu.triviaapinavdrawer;
 
 /**
  * Created by markrusso on 4/3/18.
+ * this is a list fragment class
+ * implemented in Faavorites Activity
+ * used to display favorites
  */
-
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -19,57 +21,34 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 import java.util.ArrayList;
 
 public class FavsListFragment extends ListFragment {
-    private static final String TAG = "ListDataActivity";
-    SQLiteFavorites mDatabaseHelper;
-    private ListView mListView;
-    FaavoritesActivity myActivity;
+    CountryListListener myActivity;
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        myActivity = (CountryListListener) activity;
+    }
 
+    static interface CountryListListener{
+        void itemClickedMoveToDetail(int countryId);
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        // Instantiating an adapter to store each items
+        String[] from = { "txt", };
+        int[] to = { R.id.list};
+        // R.layout.listview_layout defines the layout of each item
+        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), new Favs().getAdaptorList(), R.layout.listview_layout, from, to);
+        setListAdapter(adapter);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.listview_layout, container, false);
-      //  ListView listView = (ListView) view.findViewById(R.id.listView);
-        //populateListView();
-        return view;
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        // call a method in myActivity to start an intent
+        myActivity.itemClickedMoveToDetail(position);
     }
-
-
-    //populates the list view
-    private void populateListView() {
-        Log.d(TAG, "populateListView: Displaying data in the ListView.");
-
-        //get the data and append to a list
-        Cursor data = mDatabaseHelper.getData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()){
-            //get value from the database in col 1
-            //then add TO ArrayList
-            listData.add(data.getString(1));
-        }
-
-        //creates list adapter and set the adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1 , listData);
-        mListView.setAdapter(adapter);
-
-        //set an onItemClickListener to the ListView
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String name = adapterView.getItemAtPosition(i).toString();
-                Log.d(TAG, "onItemClick: You Clicked on " + name);
-
-                Cursor data = mDatabaseHelper.getItemID(name); //get the id associated with that name
-                int itemID = -1;
-                while(data.moveToNext()){
-                    itemID = data.getInt(0);
-                }
-
-            }
-        });
-    }
-
 }

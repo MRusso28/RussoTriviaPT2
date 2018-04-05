@@ -21,8 +21,15 @@ import android.support.v7.widget.ShareActionProvider;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+
+/**
+ * The main activity of Russos Trivia
+ * Updated April 6, 2018
+ * @author markrusso
+ * SER210
+ */
+
+public class MainActivity extends AppCompatActivity {
     private ShareActionProvider shareActionProvider;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -30,36 +37,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeActivity.theme_color);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-
         OptionsFragment frag = (OptionsFragment) getFragmentManager().findFragmentById(R.id.options_frag);
 
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer) {
-
-            @Override
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                invalidateOptionsMenu();
-            }
-
-            //Called when a drawer has settled in a completely open state.
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                invalidateOptionsMenu();
-                drawer.bringToFront();
-                drawerLayout.requestLayout();
-            }
-        };
-        drawerLayout.setDrawerListener(drawerToggle);
 
     }
 
@@ -87,23 +69,19 @@ public class MainActivity extends AppCompatActivity
         shareActionProvider = (android.support.v7.widget.ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
       //  setIntent("");
         return super.onCreateOptionsMenu(menu);
-
     }
 
     //switches action bar item when selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
         switch (item.getItemId()) {
             case R.id.action_create_order:
+                finish();
                 Intent intent = new Intent(this, ThemeActivity.class);
                 startActivity(intent);
                 return true;
@@ -119,30 +97,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, TriviaActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-            return true;
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     //shows credits
     public void onClickInfo(View view) {
@@ -177,10 +131,7 @@ public class MainActivity extends AppCompatActivity
     //exits the application
     public void onClickExit(View view) {
        System.exit(1);
-
-
     }
-
 
     public void setIntent(String text) {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -188,14 +139,5 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(Intent.EXTRA_TEXT, text);
 //        shareActionProvider.setShareIntent(intent);
         startActivity(intent);
-    }
-
-    public void setSettings(String text){
-        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, text);
-//        shareActionProvider.setShareIntent(intent);
-        startActivity(intent);
-
     }
 }

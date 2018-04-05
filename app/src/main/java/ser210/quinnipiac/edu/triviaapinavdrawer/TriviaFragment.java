@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+
 /**
- * Mark Russo
+ * The is a fragment used by the tivia activity of Russos Trivia
+ * Updated April 6, 2018
+ * @author markrusso
+ * SER210
  */
 
 public class TriviaFragment extends Fragment {

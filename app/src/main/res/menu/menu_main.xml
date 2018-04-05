@@ -33,5 +33,10 @@
         android:showAsAction="never"
         android:actionProviderClass="android.app.MediaRouteActionProvider"/>
 
+    <item android:id="@+id/action_delete"
+        android:title="Delete"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:actionProviderClass="android.app.MediaRouteActionProvider"/>
 
 </menu>

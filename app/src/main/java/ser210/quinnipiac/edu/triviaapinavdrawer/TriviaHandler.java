@@ -7,7 +7,11 @@ import org.json.JSONObject;
 /**
  * Created by markrusso on 3/5/18.
  * class retireves data and is used through ASYSC TASK
+ * Updated April 6, 2018
+ * @author markrusso
+ * SER210
  */
+
 
 public class TriviaHandler {
     private static int position = 0;
