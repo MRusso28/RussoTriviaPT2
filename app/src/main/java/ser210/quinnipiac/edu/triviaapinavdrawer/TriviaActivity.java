@@ -8,7 +8,6 @@ package ser210.quinnipiac.edu.triviaapinavdrawer;
  * questions and options from Trivia Handler
  */
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,8 +16,6 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
@@ -37,7 +34,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import android.support.v7.widget.Toolbar;
 
 public class TriviaActivity extends AppCompatActivity {
     //Four urls used in the trivia
@@ -62,7 +58,7 @@ public class TriviaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(ThemeActivity.theme_color);
+        setTheme(SettingsActivity.theme_color);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
         question = (TextView) findViewById(R.id.question);
@@ -75,12 +71,12 @@ public class TriviaActivity extends AppCompatActivity {
         myDB = new SQLiteFavorites(this);
 
         //change the fonts if changed in settings else use default font
-        if(ThemeActivity.font_type != null){
-            question.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
-            opt1.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
-            opt2.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
-            opt3.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
-            opt4.setTypeface(Typeface.createFromAsset(getAssets(), ThemeActivity.font_type));
+        if(SettingsActivity.font_type != null){
+            question.setTypeface(Typeface.createFromAsset(getAssets(), SettingsActivity.font_type));
+            opt1.setTypeface(Typeface.createFromAsset(getAssets(), SettingsActivity.font_type));
+            opt2.setTypeface(Typeface.createFromAsset(getAssets(), SettingsActivity.font_type));
+            opt3.setTypeface(Typeface.createFromAsset(getAssets(), SettingsActivity.font_type));
+            opt4.setTypeface(Typeface.createFromAsset(getAssets(), SettingsActivity.font_type));
         }else{
             question.setTypeface(Typeface.createFromAsset(getAssets(), "default.ttf"));
             opt1.setTypeface(Typeface.createFromAsset(getAssets(), "default.ttf"));
@@ -123,46 +119,22 @@ public class TriviaActivity extends AppCompatActivity {
 
             }
         });
-        //Checks the answers
-        Button answer = findViewById(R.id.answer_button);
-        answer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                //checkAnswer();
-            }
-        });
-
-//        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer) {
-//
-//            @Override
-//            public void onDrawerClosed(View view) {
-//                super.onDrawerClosed(view);
-//                invalidateOptionsMenu();
-//            }
-//
-//            //Called when a drawer has settled in a completely open state.
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                invalidateOptionsMenu();
-//                drawer.bringToFront();
-//                drawerLayout.requestLayout();
-//            }
-//        };
     }
 
     //add data to the SQLFavs
     public void AddData(String newEntry) {
         boolean insertData = myDB.addData(newEntry);
         if(insertData==true){
-            Toast.makeText(this, "Question Successfully Inserted To Favs!", Toast.LENGTH_LONG).show();
+            myDB.popList();
+            Toast.makeText(this, "Question Successfully Inserted To Favorites!", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(this, "Im Sorry Something didnt work", Toast.LENGTH_LONG).show();
         }
     }
 
+    //creates tool bar options
+    //share option is avalable in this activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //inflate the menu
@@ -177,17 +149,11 @@ public class TriviaActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-//        if (drawerToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
 
         switch (item.getItemId()) {
             case R.id.action_create_order:
                 finish();
-                Intent intent = new Intent(this, ThemeActivity.class);
+                Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_share:
@@ -211,6 +177,7 @@ public class TriviaActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(TriviaActivity.this, "invalid", Toast.LENGTH_LONG).show();
                     }
+                    return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -417,17 +384,6 @@ public class TriviaActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, text);
-//        shareActionProvider.setShareIntent(intent);
         startActivity(intent);
     }
-
-    public void setSettings(String text){
-        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, text);
-//        shareActionProvider.setShareIntent(intent);
-        startActivity(intent);
-
-    }
-
 }

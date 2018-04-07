@@ -1,24 +1,15 @@
 package ser210.quinnipiac.edu.triviaapinavdrawer;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 
 /**
@@ -26,16 +17,20 @@ import org.w3c.dom.Text;
  * this class is the theme of the trivia game
  * fonts and toolbar colors are set here
  */
-public class ThemeActivity extends AppCompatActivity {
+
+public class SettingsActivity extends AppCompatActivity {
     public static int theme_color = R.style.AppTheme;
     public static String font_type;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         final Toolbar myToolbar;
+        //sets the theme
         setTheme(theme_color);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theme);
+
+        //retrieves all of the buttons created in xml
         Button btn1 = (Button) findViewById(R.id.button);
         Button btn2 = (Button) findViewById(R.id.button2);
         Button btn3 = (Button) findViewById(R.id.button3);
@@ -48,17 +43,12 @@ public class ThemeActivity extends AppCompatActivity {
         font_type = ("default.ttf");
 
 
-
         //all on click methods for each theme button
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 theme_color = R.style.AppThemeNew;
                 recreate();
-                Toast.makeText(ThemeActivity.this, "Theme Changed!!", Toast.LENGTH_LONG).show();
-
-                //myToolbar.setBackgroundColor(Color.YELLOW);
-               // myToolbar.getResources().getColor(R.color.colorBlack);
 
             }
         });
@@ -68,7 +58,6 @@ public class ThemeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 theme_color = R.style.AppThemeNew2;
                 recreate();
-                //myToolbar.setBackgroundColor(Color.BLACK);
 
             }
         });
@@ -76,10 +65,8 @@ public class ThemeActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                theme_color = R.style.AppThemeNew3;
+                theme_color = R.style.AppTheme;
                 recreate();
-               // myToolbar.setBackgroundColor(Color.RED);
-
             }
         });
 
@@ -87,7 +74,7 @@ public class ThemeActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThemeActivity.this, MainActivity.class );
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,7 +83,7 @@ public class ThemeActivity extends AppCompatActivity {
         btnFont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               settings.setTypeface(Typeface.createFromAsset(getAssets(), "drivingaround.ttf"));
+                settings.setTypeface(Typeface.createFromAsset(getAssets(), "drivingaround.ttf"));
                 font_type = ("drivingaround.ttf");
             }
         });
@@ -120,15 +107,13 @@ public class ThemeActivity extends AppCompatActivity {
 
     }
 
-
-
+    //nothin to share in this activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //inflate the menu
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem menuItem = menu.findItem(R.id.action_share);
-       // shareActionProvider = (android.support.v7.widget.ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-        //  setIntent("");
+        //app should not be able to share the settings
+        //MenuItem menuItem = menu.findItem(R.id.action_share);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -141,13 +126,13 @@ public class ThemeActivity extends AppCompatActivity {
         }
         switch (item.getItemId()) {
             case R.id.action_create_order:
-                Intent intent = new Intent(this, ThemeActivity.class);
+                Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_share:
                 return true;
             case R.id.action_display_fav:
-                Intent intent2 = new Intent(this, FaavoritesActivity.class );
+                Intent intent2 = new Intent(this, FaavoritesActivity.class);
                 startActivity(intent2);
                 return true;
             case R.id.action_settings:
@@ -159,5 +144,4 @@ public class ThemeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

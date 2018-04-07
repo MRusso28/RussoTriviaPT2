@@ -8,47 +8,59 @@ package ser210.quinnipiac.edu.triviaapinavdrawer;
  */
 
 import android.app.Activity;
+import android.app.ListFragment;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ListFragment;
-import android.util.Log;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import java.util.ArrayList;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class FavsListFragment extends ListFragment {
-    CountryListListener myActivity;
+
+    //empty constructor
+    public FavsListFragment() {
+
+    }
+
+    //interface used to communicate, implemented by faavorites activity
+    static interface FavsListListener {
+        void itemClickedMoveToDetail(int position);
+    }
+
+    FavsListListener myActivity;
+
+    //inflates layout
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_item, container, false);
+        return view;
+    }
+
+    //Activity created, sets the list adapter
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, SQLiteFavorites.list);
+        setListAdapter(adapter);
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        myActivity = (CountryListListener) activity;
+        this.myActivity = (FavsListListener) activity;
     }
 
-    static interface CountryListListener{
-        void itemClickedMoveToDetail(int countryId);
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        // Instantiating an adapter to store each items
-        String[] from = { "txt", };
-        int[] to = { R.id.list};
-        // R.layout.listview_layout defines the layout of each item
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), new Favs().getAdaptorList(), R.layout.listview_layout, from, to);
-        setListAdapter(adapter);
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
+    //Responds to list item clicks
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        // call a method in myActivity to start an intent
-        myActivity.itemClickedMoveToDetail(position);
+        if (myActivity != null) {
+            super.onListItemClick(l, v, position, id);
+            myActivity.itemClickedMoveToDetail(position);
+        }
+
     }
+
 }

@@ -23,12 +23,16 @@
         </activity>
         <activity android:name=".TriviaActivity" />
         <activity
-            android:name=".ThemeActivity"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_theme"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FaavoritesActivity"
             android:label="@string/title_activity_faavorites"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FavoriteDetailActivity"
+            android:label="@string/title_activity_favorite_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

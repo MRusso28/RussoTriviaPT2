@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_theme"
-    tools:context="ser210.quinnipiac.edu.triviaapinavdrawer.ThemeActivity">
+    tools:context="ser210.quinnipiac.edu.triviaapinavdrawer.SettingsActivity">
 
 
     <TextView
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:layout_marginLeft="240dp"
-            android:text="RED"
+            android:text="DEFAULT"
             tools:layout_editor_absoluteX="265dp"
             tools:layout_editor_absoluteY="133dp" />
 
@@ -82,7 +82,7 @@
             android:id="@+id/buttonFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BOLED"
+            android:text="BOLD"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="300dp"
             tools:layout_editor_absoluteX="16dp"
@@ -114,7 +114,7 @@
         android:id="@+id/back"
         android:layout_marginTop="400dp"
         android:layout_marginLeft="140dp"
-        android:text="BACK"
+        android:text="HOME"
         tools:layout_editor_absoluteX="265dp"
         tools:layout_editor_absoluteY="133dp" />
 

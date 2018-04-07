@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 
 /**
- * The is a fragment used by the tivia activity of Russos Trivia
+ * The is a fragment used by the trivia activity of Russos Trivia
  * Updated April 6, 2018
  * @author markrusso
  * SER210
